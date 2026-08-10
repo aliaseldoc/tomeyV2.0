@@ -1,0 +1,63 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/montserrat/600.css';
+@import '@fontsource/montserrat/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 62.5%; /* 1rem = 10px */
+  }
+
+  body {
+    @apply bg-deep-navy text-on-surface font-body-md text-body-md antialiased;
+    min-height: 100dvh;
+    background-image: radial-gradient(circle at 2px 2px, rgba(92, 216, 218, 0.15) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+}
+
+@layer components {
+  .glow-input:focus {
+    box-shadow: 0 4px 20px -2px rgba(92, 216, 218, 0.3);
+    border-bottom-color: #5cd8da;
+  }
+
+  .glass-panel {
+    background: rgba(15, 26, 55, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .glow-hover:hover {
+    box-shadow: 0 0 20px rgba(92, 216, 218, 0.5);
+    border-color: #5cd8da;
+    background: rgba(15, 26, 55, 0.95);
+  }
+
+  .lifeline-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+    background: rgba(212, 175, 55, 0.1);
+  }
+
+  .rank-gold {
+    color: #d4af37;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+
+  .rank-silver {
+    color: #c0c0c0;
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+  }
+
+  .rank-bronze {
+    color: #cd7f32;
+    text-shadow: 0 0 10px rgba(205, 127, 50, 0.5);
+  }
+}

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>El Desafío de Tomey</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config from Guidance -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#2a3452",
+                    "on-error": "#690005",
+                    "tertiary": "#b4ccbd",
+                    "surface-variant": "#2a3452",
+                    "primary-fixed-dim": "#5cd8da",
+                    "surface-container-low": "#0f1a37",
+                    "on-tertiary": "#20352a",
+                    "danger-red": "#E63946",
+                    "mint-surface": "#D9F2E2",
+                    "gold-accent": "#D4AF37",
+                    "outline": "#869393",
+                    "secondary-fixed-dim": "#e9c349",
+                    "tertiary-fixed-dim": "#b4ccbd",
+                    "surface-dim": "#07122e",
+                    "background": "#07122e",
+                    "outline-variant": "#3d4949",
+                    "secondary-fixed": "#ffe088",
+                    "on-primary-container": "#003233",
+                    "on-error-container": "#ffdad6",
+                    "pure-white": "#FFFFFF",
+                    "on-tertiary-fixed-variant": "#364b40",
+                    "on-background": "#dbe1ff",
+                    "primary": "#5cd8da",
+                    "inverse-primary": "#00696b",
+                    "on-secondary": "#3c2f00",
+                    "surface-tint": "#5cd8da",
+                    "on-secondary-fixed": "#241a00",
+                    "on-surface-variant": "#bcc9c9",
+                    "surface": "#07122e",
+                    "primary-container": "#00a4a6",
+                    "on-primary": "#003738",
+                    "secondary-container": "#af8d11",
+                    "inverse-surface": "#dbe1ff",
+                    "on-surface": "#dbe1ff",
+                    "on-secondary-container": "#342800",
+                    "teal-medical": "#00A4A6",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed": "#d0e8d9",
+                    "on-tertiary-container": "#1b3126",
+                    "tertiary-container": "#81998b",
+                    "deep-navy": "#000825",
+                    "on-primary-fixed": "#002020",
+                    "surface-container-high": "#1f2946",
+                    "inverse-on-surface": "#252f4d",
+                    "primary-fixed": "#7cf5f7",
+                    "surface-container": "#141e3b",
+                    "surface-container-lowest": "#020c29",
+                    "surface-bright": "#2e3856",
+                    "secondary": "#e9c349",
+                    "on-primary-fixed-variant": "#004f50",
+                    "on-tertiary-fixed": "#0a1f16",
+                    "error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#574500"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-margin": "2.0rem",
+                    "lg": "4.0rem",
+                    "sm": "1.2rem",
+                    "gutter": "1.6rem",
+                    "md": "2.4rem",
+                    "xs": "0.8rem",
+                    "xl": "6.4rem",
+                    "base": "0.4rem"
+            },
+            "fontFamily": {
+                    "title-md": [
+                            "Montserrat"
+                    ],
+                    "quiz-option": [
+                            "Inter"
+                    ],
+                    "headline-lg-mobile": [
+                            "Montserrat"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ],
+                    "headline-xl": [
+                            "Montserrat"
+                    ],
+                    "headline-lg": [
+                            "Montserrat"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "title-md": [
+                            "2.0rem",
+                            {
+                                    "lineHeight": "2.8rem",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "quiz-option": [
+                            "1.7rem",
+                            {
+                                    "lineHeight": "2.2rem",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "2.4rem",
+                            {
+                                    "lineHeight": "3.0rem",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "1.6rem",
+                            {
+                                    "lineHeight": "2.4rem",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "1.2rem",
+                            {
+                                    "lineHeight": "1.6rem",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-xl": [
+                            "3.6rem",
+                            {
+                                    "lineHeight": "4.4rem",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "2.8rem",
+                            {
+                                    "lineHeight": "3.4rem",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "1.8rem",
+                            {
+                                    "lineHeight": "2.8rem",
+                                    "fontWeight": "400"
+                            }
+                    }
+            }
+          },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(15, 26, 55, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(92, 216, 218, 0.5);
+            border-color: #5cd8da;
+            background: rgba(15, 26, 55, 0.95);
+        }
+        .lifeline-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .lifeline-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+            background: rgba(212, 175, 55, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen overflow-x-hidden font-body-md text-body-md flex flex-col">
+<!-- Background Image / Canvas -->
+<div class="fixed inset-0 z-[-1] bg-cover bg-center opacity-40 mix-blend-screen" data-alt="A dark, cinematic abstract background designed for a medical education quiz app. Deep navy blue tones blend with subtle, glowing teal gradients and faint, stylized medical or molecular geometry faintly visible in the backdrop. The lighting is moody and focused, resembling a high-stakes game show set but with a sterile, professional healthcare twist. No distinct characters, just an atmospheric, high-contrast structural background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0iOF8C7BhiLNHa65mekljEH7eVTqQ9g4ZMTU0vspUE-7azLq8EMMBlqI96cjiduzQ13D_i27LTQUGZe5zzQyYlwRkyOy-zyLC-2DaxyefNWL8b2MORBDuuT5tLLAqI20KqKnA1biytIEbMk4nbV4RSsMxi3ox7dMSU9Gu6-AfsDdAX7vnN44ojY-b2UcjKdCptZrSo4Z-KE5cBRlLYUkrznCNdeddHhlWBExGEO8IfQpPCfJCpcbbYg')"></div>
+<div class="fixed inset-0 z-[-1] bg-gradient-to-b from-transparent via-deep-navy/50 to-deep-navy"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin py-base bg-surface-container-lowest/90 backdrop-blur-md border-b border-pure-white/10 shadow-md">
+<button class="flex items-center text-primary hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-xs rounded-full">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">clinical_notes</span>
+</button>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-primary font-bold tracking-tight">El Desafío de Tomey</h1>
+<button class="flex items-center text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-xs rounded-full">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col md:flex-row max-w-7xl mx-auto w-full pt-[80px] pb-[80px] px-container-margin gap-lg pb-[100px]">
+<!-- Game Board (Left/Center) -->
+<section class="flex-grow flex flex-col justify-center max-w-[800px] mx-auto w-full relative z-10">
+<!-- Progress/Score Indicator -->
+<div class="flex items-center justify-between mb-sm bg-surface-container/80 rounded-full px-md py-xs border border-white/5">
+<div class="flex items-center gap-xs text-gold-accent">
+<span class="material-symbols-outlined text-sm">stars</span>
+<span class="font-label-caps font-bold">15,000 Pts</span>
+</div>
+<div class="text-on-surface-variant font-label-caps font-bold">Nivel 5/10</div>
+</div>
+<!-- Lifelines (Top Right overlay on mobile, inline on desktop) -->
+<div class="flex justify-end gap-sm mb-lg">
+<button class="lifeline-button w-12 h-12 rounded-full bg-surface-container border-2 border-gold-accent/50 flex items-center justify-center text-gold-accent group" title="50:50">
+<span class="font-label-caps text-label-caps font-bold">50:50</span>
+</button>
+<button class="lifeline-button w-12 h-12 rounded-full bg-surface-container border-2 border-gold-accent/50 flex items-center justify-center text-gold-accent group" title="Consultar el libro">
+<span class="material-symbols-outlined">menu_book</span>
+</button>
+<button class="lifeline-button w-12 h-12 rounded-full bg-surface-container border-2 border-gold-accent/50 flex items-center justify-center text-gold-accent group" title="Saltar">
+<span class="material-symbols-outlined">skip_next</span>
+</button>
+</div>
+<!-- Question Area -->
+<div class="bg-surface-container-low/90 backdrop-blur-xl rounded-2xl p-lg mb-lg text-center shadow-2xl border border-white/10 relative overflow-hidden min-h-[160px] flex flex-col justify-center">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-gold-accent to-primary"></div>
+<p class="font-label-caps text-label-caps text-primary mb-sm uppercase tracking-widest opacity-80">Gestión de Enfermería</p>
+<h2 class="font-title-md text-title-md text-pure-white py-xs leading-relaxed">¿Cuál de las siguientes teorías de gestión enfatiza la adaptación del estilo de liderazgo a la madurez de los seguidores?</h2>
+</div>
+<!-- Answers Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Option A -->
+<button class="glass-panel rounded-xl p-md text-left flex items-center group glow-hover transition-all duration-300 min-h-[90px] shadow-lg">
+<span class="font-headline-lg text-headline-lg text-primary mr-md w-10 text-center font-bold">A</span>
+<span class="font-quiz-option text-quiz-option text-on-surface group-hover:text-pure-white transition-colors">Teoría de Rasgos</span>
+</button>
+<!-- Option B -->
+<button class="glass-panel rounded-xl p-md text-left flex items-center group glow-hover transition-all duration-300 min-h-[90px] shadow-lg">
+<span class="font-headline-lg text-headline-lg text-primary mr-md w-10 text-center font-bold">B</span>
+<span class="font-quiz-option text-quiz-option text-on-surface group-hover:text-pure-white transition-colors">Liderazgo Situacional de Hersey y Blanchard</span>
+</button>
+<!-- Option C -->
+<button class="glass-panel rounded-xl p-md text-left flex items-center group glow-hover transition-all duration-300 min-h-[90px] shadow-lg">
+<span class="font-headline-lg text-headline-lg text-primary mr-md w-10 text-center font-bold">C</span>
+<span class="font-quiz-option text-quiz-option text-on-surface group-hover:text-pure-white transition-colors">Teoría X y Teoría Y de McGregor</span>
+</button>
+<!-- Option D -->
+<button class="glass-panel rounded-xl p-md text-left flex items-center group glow-hover transition-all duration-300 min-h-[90px] shadow-lg">
+<span class="font-headline-lg text-headline-lg text-primary mr-md w-10 text-center font-bold">D</span>
+<span class="font-quiz-option text-quiz-option text-on-surface group-hover:text-pure-white transition-colors">Teoría de Sistemas</span>
+</button>
+</div>
+<!-- Progress Bar (Mobile) -->
+<div class="md:hidden mt-lg w-full h-2 bg-surface-container-high rounded-full overflow-hidden shadow-inner">
+<div class="h-full bg-gradient-to-r from-primary to-gold-accent w-1/2"></div>
+</div>
+</section>
+<!-- Progress Ladder Sidebar (Desktop) -->
+<aside class="hidden md:flex flex-col w-72 bg-surface-container-low/90 backdrop-blur-xl rounded-2xl p-md self-start sticky top-[100px] border border-white/5 shadow-2xl">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-md uppercase tracking-widest text-center border-b border-white/10 pb-sm">Nivel de Conocimiento</h3>
+<ul class="flex flex-col-reverse gap-xs font-body-md text-body-md">
+<li class="flex justify-between items-center py-sm px-md rounded-lg text-on-surface-variant opacity-40"><span class="font-bold">1</span><span class="">Fundamentos</span></li>
+<li class="flex justify-between items-center py-sm px-md rounded-lg text-on-surface-variant opacity-40"><span class="font-bold">2</span><span class="">Cuidados Básicos</span></li>
+<li class="flex justify-between items-center py-sm px-md rounded-lg text-on-surface-variant opacity-60"><span class="font-bold">3</span><span class="">Farmacología</span></li>
+<li class="flex justify-between items-center py-sm px-md rounded-lg text-primary bg-primary/10 border border-primary/20"><span class="font-bold">4</span><span class="">Patología B.</span></li>
+<li class="flex justify-between items-center py-sm px-md rounded-lg text-pure-white bg-gold-accent/20 border border-gold-accent shadow-[0_0_15px_rgba(212,175,55,0.4)]"><span class="font-bold">5</span><span class="font-semibold">Gestión</span><span class="material-symbols-outlined text-gold-accent text-base ml-xs">star</span></li>
+<li class="flex justify-between items-center py-sm px-md rounded-lg text-on-surface-variant"><span class="font-bold">6</span><span class="">Urgencias</span></li>
+<li class="flex justify-between items-center py-sm px-md rounded-lg text-on-surface-variant"><span class="font-bold">7</span><span class="">Especialización</span></li>
+<li class="flex justify-between items-center py-sm px-md rounded-lg text-on-surface-variant"><span class="font-bold">8</span><span class="">Maestría</span></li>
+</ul>
+</aside>
+</main>
+<!-- BottomNavBar (Mobile Only based on layout logic, though usually suppressed for focus, keeping it per JSON instruction mapping 'Desafío') -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-base pt-xs bg-surface-container-lowest/95 backdrop-blur-md border-t border-pure-white/10 shadow-[0_-4px_15px_rgba(0,0,0,0.5)] rounded-t-2xl md:hidden pb-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:text-primary transition-all active:scale-90 duration-200 py-xs" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-caps text-label-caps">Inicio</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container/20 border border-primary/30 text-primary rounded-xl px-md py-sm shadow-[0_0_15px_rgba(92,216,218,0.2)] active:scale-90 duration-200 transform -translate-y-2 bg-surface" href="#">
+<span class="material-symbols-outlined mb-1 text-primary" style="font-variation-settings: 'FILL' 1;">quiz</span>
+<span class="font-label-caps text-label-caps font-bold">Desafío</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:text-primary transition-all active:scale-90 duration-200 py-xs" href="#">
+<span class="material-symbols-outlined mb-1">leaderboard</span>
+<span class="font-label-caps text-label-caps">Ranking</span>
+</a>
+</nav>
+</body></html>

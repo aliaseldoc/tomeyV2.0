@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>El Desafío de Tomey</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#2a3452",
+                        "on-error": "#690005",
+                        "tertiary": "#b4ccbd",
+                        "surface-variant": "#2a3452",
+                        "primary-fixed-dim": "#5cd8da",
+                        "surface-container-low": "#0f1a37",
+                        "on-tertiary": "#20352a",
+                        "danger-red": "#E63946",
+                        "mint-surface": "#D9F2E2",
+                        "gold-accent": "#D4AF37",
+                        "outline": "#869393",
+                        "secondary-fixed-dim": "#e9c349",
+                        "tertiary-fixed-dim": "#b4ccbd",
+                        "surface-dim": "#07122e",
+                        "background": "#07122e",
+                        "outline-variant": "#3d4949",
+                        "secondary-fixed": "#ffe088",
+                        "on-primary-container": "#003233",
+                        "on-error-container": "#ffdad6",
+                        "pure-white": "#FFFFFF",
+                        "on-tertiary-fixed-variant": "#364b40",
+                        "on-background": "#dbe1ff",
+                        "primary": "#5cd8da",
+                        "inverse-primary": "#00696b",
+                        "on-secondary": "#3c2f00",
+                        "surface-tint": "#5cd8da",
+                        "on-secondary-fixed": "#241a00",
+                        "on-surface-variant": "#bcc9c9",
+                        "surface": "#07122e",
+                        "primary-container": "#00a4a6",
+                        "on-primary": "#003738",
+                        "secondary-container": "#af8d11",
+                        "inverse-surface": "#dbe1ff",
+                        "on-surface": "#dbe1ff",
+                        "on-secondary-container": "#342800",
+                        "teal-medical": "#00A4A6",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#d0e8d9",
+                        "on-tertiary-container": "#1b3126",
+                        "tertiary-container": "#81998b",
+                        "deep-navy": "#000825",
+                        "on-primary-fixed": "#002020",
+                        "surface-container-high": "#1f2946",
+                        "inverse-on-surface": "#252f4d",
+                        "primary-fixed": "#7cf5f7",
+                        "surface-container": "#141e3b",
+                        "surface-container-lowest": "#020c29",
+                        "surface-bright": "#2e3856",
+                        "secondary": "#e9c349",
+                        "on-primary-fixed-variant": "#004f50",
+                        "on-tertiary-fixed": "#0a1f16",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#574500"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "2.0rem",
+                        "lg": "4.0rem",
+                        "sm": "1.2rem",
+                        "gutter": "1.6rem",
+                        "md": "2.4rem",
+                        "xs": "0.8rem",
+                        "xl": "6.4rem",
+                        "base": "0.4rem"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Montserrat"],
+                        "quiz-option": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-xl": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["2.0rem", { "lineHeight": "2.8rem", "fontWeight": "600" }],
+                        "quiz-option": ["1.7rem", { "lineHeight": "2.2rem", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["2.4rem", { "lineHeight": "3.0rem", "fontWeight": "600" }],
+                        "body-md": ["1.6rem", { "lineHeight": "2.4rem", "fontWeight": "400" }],
+                        "label-caps": ["1.2rem", { "lineHeight": "1.6rem", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-xl": ["3.6rem", { "lineHeight": "4.4rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["2.8rem", { "lineHeight": "3.4rem", "fontWeight": "600" }],
+                        "body-lg": ["1.8rem", { "lineHeight": "2.8rem", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .medical-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(92, 216, 218, 0.15) 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+        .glow-input:focus {
+            box-shadow: 0 4px 20px -2px rgba(92, 216, 218, 0.3);
+            border-bottom-color: #5cd8da;
+        }
+    </style>
+</head>
+<body class="bg-deep-navy text-on-surface min-h-screen flex flex-col items-center justify-center relative overflow-hidden medical-pattern">
+<!-- Subtle Background Elements -->
+<div class="absolute inset-0 pointer-events-none flex justify-center items-center opacity-20">
+<div class="w-96 h-96 bg-primary-container rounded-full blur-[120px] mix-blend-screen"></div>
+<div class="absolute w-80 h-80 bg-secondary-container rounded-full blur-[100px] translate-x-32 -translate-y-32 mix-blend-screen"></div>
+</div>
+<main class="relative z-10 w-full max-w-[800px] px-container-margin md:px-lg flex flex-col items-center text-center">
+<!-- Logo Area -->
+<div class="mb-lg relative group">
+<div class="absolute -inset-4 bg-surface-container-highest rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+<img alt="El Desafío de Tomey Logo" class="relative w-48 h-48 md:w-64 md:h-64 object-contain rounded-full shadow-[0_0_40px_rgba(92,216,218,0.2)] border border-pure-white/10" data-alt="A highly detailed, modern vector illustration of a glowing, stylized medical cross intertwined with a golden laurel wreath, symbolizing nursing leadership and excellence. The graphic is set against a dark, deep navy blue background, lit from behind with an ethereal teal and gold aura. The style is premium, authoritative, and slightly futuristic, fitting a gamified educational experience for healthcare professionals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIAA5FhVA3TGmB42whb3KIfNY2VL6HaqzcEmroBf5F_mf6mDkmNKtXuG0Av2rAvIBhjGObMkD945DY5nUDYba3hOspYs1rHYH4rG6x90T4FbkFZXweYdKyCJtAAJ55zywbqPwMlKwwc1LVl9L_EDtTVPKINsWnHE_ZolDavkIQepiCTf9km-lie1zbKTCqqAeD6ogS-ibf4FOpb-kRyCcqANjK4Uvj9NYoO7QGOdRmXgcJhJIvUImf2A"/>
+</div>
+<!-- Typography -->
+<h1 class="font-headline-xl text-headline-xl text-pure-white mb-sm tracking-tight drop-shadow-md">
+            El Desafío de Tomey
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl max-w-md mx-auto">
+            Demuestra tu liderazgo en enfermería. Prepárate para el reto.
+        </p>
+<!-- Interactive Form Area -->
+<div class="w-full max-w-sm bg-surface/80 backdrop-blur-md p-md rounded-2xl border border-pure-white/10 shadow-2xl relative overflow-hidden">
+<div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-teal-medical to-gold-accent"></div>
+<form action="#" class="flex flex-col gap-lg">
+<div class="relative group">
+<label class="sr-only" for="playerName">Ingresa tu nombre</label>
+<div class="absolute inset-y-0 left-0 flex items-center pl-sm pointer-events-none text-primary">
+<span class="material-symbols-outlined text-title-md">person</span>
+</div>
+<input class="w-full bg-surface-container-low text-on-surface font-quiz-option text-quiz-option pl-xl pr-sm py-sm rounded-lg border-b-2 border-surface-container-highest focus:ring-0 focus:outline-none glow-input transition-all placeholder:text-on-surface-variant/50" id="playerName" name="playerName" placeholder="Ingresa tu nombre" type="text"/>
+</div>
+<button class="w-full bg-primary text-on-primary font-title-md text-title-md py-sm rounded-xl hover:bg-primary-fixed-dim transition-all shadow-[0_0_20px_rgba(92,216,218,0.3)] hover:shadow-[0_0_30px_rgba(92,216,218,0.5)] active:scale-95 flex items-center justify-center gap-sm" type="button">
+                    Comenzar Desafío
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Lifeline Decorative -->
+<div class="mt-lg flex gap-md opacity-50">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest border border-pure-white/10 flex items-center justify-center text-gold-accent shadow-lg">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-highest border border-pure-white/10 flex items-center justify-center text-gold-accent shadow-lg">
+<span class="material-symbols-outlined">lightbulb</span>
+</div>
+</div>
+</main>
+</body></html>

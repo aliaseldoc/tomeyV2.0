@@ -1,0 +1,10 @@
+node_modules
+dist
+dist-ssr
+*.local
+
+# Libro con derechos de autor: no debe publicarse en el repositorio
+*.pdf
+
+.DS_Store
+npm-debug.log*
