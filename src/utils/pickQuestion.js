@@ -1,20 +1,19 @@
-import { LEVELS } from '../data/levels.js';
-
-const STORAGE_KEY = 'tomey-last-question-indices';
+const STORAGE_KEY_PREFIX = 'tomey-last-question-indices-';
 let memoryFallback = {};
 
-function readLastIndices() {
+function readLastIndices(storageKey) {
   try {
-    const parsed = JSON.parse(sessionStorage.getItem(STORAGE_KEY));
+    const parsed = JSON.parse(sessionStorage.getItem(storageKey));
     return parsed && typeof parsed === 'object' ? parsed : {};
   } catch {
     return memoryFallback;
   }
 }
 
-export function pickQuestionForLevel(levelIndex) {
-  const { questions } = LEVELS[levelIndex];
-  const lastIndices = readLastIndices();
+export function pickQuestionForLevel(levels, levelIndex, nivelId) {
+  const storageKey = `${STORAGE_KEY_PREFIX}${nivelId}`;
+  const { questions } = levels[levelIndex];
+  const lastIndices = readLastIndices(storageKey);
   const lastIndex = lastIndices[levelIndex];
   const pool = questions.map((_, index) => index).filter((index) => index !== lastIndex || questions.length === 1);
   const chosenIndex = pool[Math.floor(Math.random() * pool.length)];
@@ -22,7 +21,7 @@ export function pickQuestionForLevel(levelIndex) {
   lastIndices[levelIndex] = chosenIndex;
   memoryFallback = lastIndices;
   try {
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(lastIndices));
+    sessionStorage.setItem(storageKey, JSON.stringify(lastIndices));
   } catch {
     /* memoryFallback above already keeps this working for the rest of the tab session */
   }

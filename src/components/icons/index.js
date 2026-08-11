@@ -12,3 +12,4 @@ export { LeaderboardIcon } from './LeaderboardIcon.jsx';
 export { EmojiEventsIcon } from './EmojiEventsIcon.jsx';
 export { MilitaryTechIcon } from './MilitaryTechIcon.jsx';
 export { CloseIcon } from './CloseIcon.jsx';
+export { LockIcon } from './LockIcon.jsx';

@@ -18,6 +18,12 @@ Roles en la Aplicación:
 Infografia:
 Solo puedes utilizar el libro previsto en el root de proyecto llamado: Guía de gestión y dirección de enfermería. Marriner Tomey.org 
 
+Temas:
+	-Planificacion estrategica y operativa.Vision. Valores. Mision. Filosofia. Metas y objetivos. FODA	
+	-Estructura y conceptos organizativos: organigrama. Cadena de mandos. Poder, politica y relaciones laborales: Motivacion.
+	-Comunicación. Gestión del tiempo. Negociación de conflictos. Desarrollo de las teorías de liderazgo	
+	-Evaluacion de desempeño.  Planificación de sistemas de educación continua y permanente del personal.
+
 Stack de tecnologia:
 -html5
 -css3(con tailwind)

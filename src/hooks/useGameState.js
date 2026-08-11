@@ -1,5 +1,4 @@
 import { useEffect, useReducer } from 'react';
-import { LEVELS } from '../data/levels.js';
 import { pickQuestionForLevel } from '../utils/pickQuestion.js';
 
 const REVEAL_DELAY_MS = 1500;
@@ -7,6 +6,9 @@ const REVEAL_DELAY_MS = 1500;
 const initialState = {
   status: 'idle', // 'idle' | 'playing' | 'won' | 'lost'
   playerName: '',
+  nivelId: '',
+  nivelTitle: '',
+  levels: [],
   levelIndex: 0,
   activeQuestion: null,
   selectedOptionIndex: null,
@@ -21,8 +23,8 @@ const initialState = {
   isHintOpen: false,
 };
 
-function getBankedScoreOnFail(failedLevelIndex) {
-  const passedCheckpoints = LEVELS.filter((level, index) => level.isCheckpoint && index < failedLevelIndex);
+function getBankedScoreOnFail(failedLevelIndex, levels) {
+  const passedCheckpoints = levels.filter((level, index) => level.isCheckpoint && index < failedLevelIndex);
   return passedCheckpoints.length > 0 ? passedCheckpoints[passedCheckpoints.length - 1].points : 0;
 }
 
@@ -33,6 +35,9 @@ function reducer(state, action) {
         ...initialState,
         status: 'playing',
         playerName: action.payload.name,
+        nivelId: action.payload.nivel.id,
+        nivelTitle: action.payload.nivel.title,
+        levels: action.payload.nivel.levels,
         activeQuestion: action.payload.question,
       };
     case 'PLAY_AGAIN':
@@ -40,6 +45,9 @@ function reducer(state, action) {
         ...initialState,
         status: 'playing',
         playerName: state.playerName,
+        nivelId: state.nivelId,
+        nivelTitle: state.nivelTitle,
+        levels: state.levels,
         activeQuestion: action.payload.question,
       };
     case 'ANSWER':
@@ -49,7 +57,7 @@ function reducer(state, action) {
       return {
         ...state,
         levelIndex: state.levelIndex + 1,
-        score: LEVELS[state.levelIndex].points,
+        score: state.levels[state.levelIndex].points,
         activeQuestion: action.payload.question,
         selectedOptionIndex: null,
         isAnswerRevealed: false,
@@ -60,7 +68,9 @@ function reducer(state, action) {
         ...state,
         status: action.payload.result,
         score:
-          action.payload.result === 'won' ? LEVELS[LEVELS.length - 1].points : getBankedScoreOnFail(state.levelIndex),
+          action.payload.result === 'won'
+            ? state.levels[state.levels.length - 1].points
+            : getBankedScoreOnFail(state.levelIndex, state.levels),
       };
     case 'USE_FIFTY_FIFTY':
       return {
@@ -76,7 +86,7 @@ function reducer(state, action) {
       return {
         ...state,
         levelIndex: state.levelIndex + 1,
-        score: LEVELS[state.levelIndex].points,
+        score: state.levels[state.levelIndex].points,
         activeQuestion: action.payload.question,
         selectedOptionIndex: null,
         isAnswerRevealed: false,
@@ -87,7 +97,7 @@ function reducer(state, action) {
       return {
         ...state,
         status: 'won',
-        score: LEVELS[LEVELS.length - 1].points,
+        score: state.levels[state.levels.length - 1].points,
         lifelines: { ...state.lifelines, skip: { used: true } },
       };
     case 'QUIT_RUN':
@@ -100,12 +110,15 @@ function reducer(state, action) {
 export function useGameState() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  function startRun(name) {
-    dispatch({ type: 'START_RUN', payload: { name, question: pickQuestionForLevel(0) } });
+  function startRun(name, nivel) {
+    dispatch({
+      type: 'START_RUN',
+      payload: { name, nivel, question: pickQuestionForLevel(nivel.levels, 0, nivel.id) },
+    });
   }
 
   function playAgain() {
-    dispatch({ type: 'PLAY_AGAIN', payload: { question: pickQuestionForLevel(0) } });
+    dispatch({ type: 'PLAY_AGAIN', payload: { question: pickQuestionForLevel(state.levels, 0, state.nivelId) } });
   }
 
   function selectAnswer(optionIndex) {
@@ -128,11 +141,14 @@ export function useGameState() {
   }
 
   function useSkip() {
-    const isLastLevel = state.levelIndex === LEVELS.length - 1;
+    const isLastLevel = state.levelIndex === state.levels.length - 1;
     if (isLastLevel) {
       dispatch({ type: 'USE_SKIP_FINAL' });
     } else {
-      dispatch({ type: 'USE_SKIP', payload: { question: pickQuestionForLevel(state.levelIndex + 1) } });
+      dispatch({
+        type: 'USE_SKIP',
+        payload: { question: pickQuestionForLevel(state.levels, state.levelIndex + 1, state.nivelId) },
+      });
     }
   }
 
@@ -144,7 +160,7 @@ export function useGameState() {
     if (!state.isAnswerRevealed) return undefined;
 
     const wasCorrect = state.selectedOptionIndex === state.activeQuestion.correctIndex;
-    const isLastLevel = state.levelIndex === LEVELS.length - 1;
+    const isLastLevel = state.levelIndex === state.levels.length - 1;
 
     const timer = setTimeout(() => {
       if (!wasCorrect) {
@@ -152,7 +168,10 @@ export function useGameState() {
       } else if (isLastLevel) {
         dispatch({ type: 'END_RUN', payload: { result: 'won' } });
       } else {
-        dispatch({ type: 'ADVANCE_LEVEL', payload: { question: pickQuestionForLevel(state.levelIndex + 1) } });
+        dispatch({
+          type: 'ADVANCE_LEVEL',
+          payload: { question: pickQuestionForLevel(state.levels, state.levelIndex + 1, state.nivelId) },
+        });
       }
     }, REVEAL_DELAY_MS);
 

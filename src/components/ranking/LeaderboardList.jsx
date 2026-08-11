@@ -1,6 +1,6 @@
 import { LeaderboardRow } from './LeaderboardRow.jsx';
 
-export function LeaderboardList({ entries }) {
+export function LeaderboardList({ entries, totalLevels }) {
   if (entries.length === 0) {
     return (
       <p className="mt-lg text-center font-body-md text-body-md text-on-surface-variant">
@@ -12,7 +12,7 @@ export function LeaderboardList({ entries }) {
   return (
     <div className="space-y-sm">
       {entries.map((entry, index) => (
-        <LeaderboardRow key={`${entry.name}-${entry.date}`} rank={index + 1} entry={entry} />
+        <LeaderboardRow key={`${entry.name}-${entry.date}`} rank={index + 1} entry={entry} totalLevels={totalLevels} />
       ))}
     </div>
   );

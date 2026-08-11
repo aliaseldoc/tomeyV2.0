@@ -1,7 +1,7 @@
 import { HomeIcon, QuizIcon, LeaderboardIcon } from '../icons/index.js';
 
 const TABS = [
-  { key: 'welcome', label: 'Inicio', Icon: HomeIcon },
+  { key: 'nivel-select', label: 'Inicio', Icon: HomeIcon },
   { key: 'game', label: 'Desafío', Icon: QuizIcon },
   { key: 'ranking', label: 'Ranking', Icon: LeaderboardIcon },
 ];

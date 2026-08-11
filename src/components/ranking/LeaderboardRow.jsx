@@ -1,5 +1,4 @@
 import { EmojiEventsIcon, MilitaryTechIcon } from '../icons/index.js';
-import { LEVELS } from '../../data/levels.js';
 import { formatScore } from '../../utils/formatScore.js';
 
 const MEDAL_CONFIG = {
@@ -8,7 +7,7 @@ const MEDAL_CONFIG = {
   3: { Icon: MilitaryTechIcon, className: 'rank-bronze', size: 'h-7 w-7' },
 };
 
-export function LeaderboardRow({ rank, entry }) {
+export function LeaderboardRow({ rank, entry, totalLevels }) {
   const medal = MEDAL_CONFIG[rank];
 
   if (medal) {
@@ -21,7 +20,7 @@ export function LeaderboardRow({ rank, entry }) {
         <div className="flex-grow overflow-hidden">
           <h3 className="truncate font-title-md text-title-md text-pure-white">{entry.name}</h3>
           <p className="font-body-md text-body-md text-on-surface-variant">
-            Nivel {entry.levelReached}/{LEVELS.length}
+            Pregunta {entry.levelReached}/{totalLevels}
           </p>
         </div>
         <div className="shrink-0 text-right">

@@ -1,5 +1,4 @@
 import { StarIcon } from '../icons/index.js';
-import { LEVELS } from '../../data/levels.js';
 
 function getItemClasses(state) {
   if (state === 'current') {
@@ -11,17 +10,17 @@ function getItemClasses(state) {
   return 'flex items-center justify-between rounded-lg px-md py-sm text-on-surface-variant opacity-50';
 }
 
-export function ProgressLadder({ levelIndex }) {
+export function ProgressLadder({ levelIndex, levels }) {
   return (
     <aside className="sticky top-[100px] hidden w-72 flex-col self-start rounded-2xl border border-white/5 bg-surface-container-low/90 p-md shadow-2xl backdrop-blur-xl md:flex">
       <h3 className="mb-md border-b border-white/10 pb-sm text-center font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant">
         Nivel de Conocimiento
       </h3>
       <ul className="flex flex-col-reverse gap-xs font-body-md text-body-md">
-        {LEVELS.map((level, index) => {
+        {levels.map((level, index) => {
           const state = index === levelIndex ? 'current' : index < levelIndex ? 'completed' : 'upcoming';
           return (
-            <li key={level.chapter} className={getItemClasses(state)}>
+            <li key={index} className={getItemClasses(state)}>
               <span className="font-bold">{index + 1}</span>
               <span className={`truncate px-xs ${state === 'current' ? 'font-semibold' : ''}`} title={level.category}>
                 {level.category}

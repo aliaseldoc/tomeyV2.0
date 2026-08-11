@@ -1,12 +1,11 @@
 import { Modal } from '../shared/Modal.jsx';
-import { LEVELS } from '../../data/levels.js';
 import { formatScore } from '../../utils/formatScore.js';
 import { EmojiEventsIcon } from '../icons/index.js';
 
-export function GameOverModal({ status, score, levelIndex, onPlayAgain, onViewRanking }) {
+export function GameOverModal({ status, score, levelIndex, totalLevels, nivelTitle, onPlayAgain, onViewRanking }) {
   const isOpen = status === 'won' || status === 'lost';
   const isWon = status === 'won';
-  const levelReached = isWon ? LEVELS.length : levelIndex + 1;
+  const levelReached = isWon ? totalLevels : levelIndex + 1;
 
   return (
     <Modal isOpen={isOpen} onClose={() => {}} dismissible={false} labelledBy="game-over-title">
@@ -17,8 +16,8 @@ export function GameOverModal({ status, score, levelIndex, onPlayAgain, onViewRa
         </h2>
         <p className="mt-xs font-body-md text-body-md text-on-surface-variant">
           {isWon
-            ? 'Completaste los 15 niveles del Desafío de Tomey.'
-            : `Llegaste al nivel ${levelReached} de ${LEVELS.length}.`}
+            ? `Completaste las ${totalLevels} preguntas de ${nivelTitle}.`
+            : `Llegaste a la pregunta ${levelReached} de ${totalLevels} en ${nivelTitle}.`}
         </p>
         <p className="mt-md font-headline-xl text-headline-xl text-gold-accent">{formatScore(score)}</p>
         <p className="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant">Puntos</p>
