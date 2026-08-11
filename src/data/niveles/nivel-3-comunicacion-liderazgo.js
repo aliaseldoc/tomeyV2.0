@@ -3,7 +3,7 @@ export const NIVEL_3 = {
   id: 'comunicacion-liderazgo',
   title: 'Comunicación y liderazgo',
   description: 'Comunicaciones, gestión del estrés y del tiempo, toma de decisiones, negociación de conflictos y teorías de liderazgo.',
-  unlockDate: null,
+  unlockDate: '2026-09-18',
   levels: [
     {
       points: 100,

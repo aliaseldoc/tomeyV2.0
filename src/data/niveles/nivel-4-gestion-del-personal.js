@@ -24,7 +24,7 @@ export const NIVEL_4 = {
   id: 'gestion-del-personal',
   title: 'Gestión del personal',
   description: 'Selección y desarrollo de personal, planificación y dotación de personal, y evaluación y disciplina del personal.',
-  unlockDate: null,
+  unlockDate: '2026-11-13',
   levels: [
     {
       points: 100,

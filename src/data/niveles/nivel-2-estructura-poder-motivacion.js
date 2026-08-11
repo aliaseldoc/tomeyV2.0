@@ -3,7 +3,7 @@ export const NIVEL_2 = {
   id: 'estructura-poder-motivacion',
   title: 'Estructura, poder y motivación',
   description: 'Estructuras y conceptos organizativos, poder, política y relaciones laborales, y motivación y moral.',
-  unlockDate: null,
+  unlockDate: '2026-09-04',
   levels: [
     {
       points: 100,
