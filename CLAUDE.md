@@ -12,7 +12,7 @@ Objetivo:
 
 Roles en la Aplicación:
 -Poder ingresar el nombre del jugador
--Que la app registre el top 20 de puntajes mas altos
+-Que la app registre el top 10 de puntajes más altos, independiente por nivel
 -Estilo de juego preguntas y respuestas. Con un formato similar a "Quien quiere ser millonario"
 
 Infografia:
@@ -23,6 +23,17 @@ Temas:
 	-Estructura y conceptos organizativos: organigrama. Cadena de mandos. Poder, politica y relaciones laborales: Motivacion.
 	-Comunicación. Gestión del tiempo. Negociación de conflictos. Desarrollo de las teorías de liderazgo	
 	-Evaluacion de desempeño.  Planificación de sistemas de educación continua y permanente del personal.
+
+Estructura del juego:
+-El juego se divide en 4 niveles temáticos, cada uno alineado con una clase del curso:
+	-Nivel 1 · Planificación y gestión (capítulos 8, 9 y 15 del libro)
+	-Nivel 2 · Estructura, poder y motivación (capítulos 4, 5, 10 y 11)
+	-Nivel 3 · Comunicación y liderazgo (capítulos 1, 2, 3, 6 y 7)
+	-Nivel 4 · Gestión del personal (capítulos 12, 13 y 14)
+-Cada nivel es una escalera independiente de 15 preguntas, con la misma curva de puntos (100 a 20.000) y checkpoints en las preguntas 5 y 10.
+-Cada una de esas 15 preguntas surge de un pool de 5 candidatas por escalón, elegida al azar en cada partida para que memorizar el orden no alcance para ganar.
+-Los niveles se desbloquean de forma secuencial por fecha (Nivel 1 habilitado por defecto; los siguientes se habilitan en la fecha que indique el usuario).
+-El ranking top 10 es independiente por nivel, sin mezclar puntajes entre niveles.
 
 Stack de tecnologia:
 -html5
