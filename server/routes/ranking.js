@@ -1,38 +1,45 @@
 import { Router } from 'express';
-import db from '../db.js';
+import { leaderboardCollection } from '../db.js';
 
 const MAX_ENTRIES = 10;
 const NAME_MAX_LENGTH = 40;
 
 const router = Router({ mergeParams: true });
 
-function getTopEntries(nivelId) {
-  return db
-    .prepare(
-      `SELECT name, score, level_reached AS levelReached, created_at AS date
-       FROM leaderboard_entries
-       WHERE nivel_id = ?
-       ORDER BY score DESC, created_at ASC
-       LIMIT ?`,
-    )
-    .all(nivelId, MAX_ENTRIES);
+async function getTopEntries(nivelId) {
+  const docs = await leaderboardCollection
+    .find({ nivelId })
+    .sort({ score: -1, createdAt: 1 })
+    .limit(MAX_ENTRIES)
+    .toArray();
+
+  return docs.map((doc) => ({
+    name: doc.name,
+    score: doc.score,
+    levelReached: doc.levelReached,
+    date: doc.createdAt,
+  }));
 }
 
-function pruneToTopEntries(nivelId) {
-  db.prepare(
-    `DELETE FROM leaderboard_entries
-     WHERE nivel_id = ?
-     AND id NOT IN (
-       SELECT id FROM leaderboard_entries WHERE nivel_id = ? ORDER BY score DESC, created_at ASC LIMIT ?
-     )`,
-  ).run(nivelId, nivelId, MAX_ENTRIES);
+async function pruneToTopEntries(nivelId) {
+  const entriesToKeep = await leaderboardCollection
+    .find({ nivelId })
+    .sort({ score: -1, createdAt: 1 })
+    .limit(MAX_ENTRIES)
+    .project({ _id: 1 })
+    .toArray();
+
+  await leaderboardCollection.deleteMany({
+    nivelId,
+    _id: { $nin: entriesToKeep.map((entry) => entry._id) },
+  });
 }
 
-router.get('/', (req, res) => {
-  res.json(getTopEntries(req.params.nivelId));
+router.get('/', async (req, res) => {
+  res.json(await getTopEntries(req.params.nivelId));
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const { nivelId } = req.params;
   const { name, score, levelReached } = req.body ?? {};
 
@@ -50,14 +57,17 @@ router.post('/', (req, res) => {
     return;
   }
 
-  db.prepare(
-    `INSERT INTO leaderboard_entries (nivel_id, name, score, level_reached, created_at)
-     VALUES (?, ?, ?, ?, ?)`,
-  ).run(nivelId, trimmedName, score, levelReached, new Date().toISOString());
+  await leaderboardCollection.insertOne({
+    nivelId,
+    name: trimmedName,
+    score,
+    levelReached,
+    createdAt: new Date().toISOString(),
+  });
 
-  pruneToTopEntries(nivelId);
+  await pruneToTopEntries(nivelId);
 
-  res.status(201).json(getTopEntries(nivelId));
+  res.status(201).json(await getTopEntries(nivelId));
 });
 
 export default router;

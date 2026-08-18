@@ -1,28 +1,15 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import Database from 'better-sqlite3';
+import { MongoClient } from 'mongodb';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DB_PATH = process.env.DB_PATH ?? path.join(__dirname, 'data', 'ranking.sqlite');
+const MONGODB_URI = process.env.MONGODB_URI;
 
-fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
+if (!MONGODB_URI) {
+  throw new Error('Falta la variable de entorno MONGODB_URI.');
+}
 
-const db = new Database(DB_PATH);
-db.pragma('journal_mode = WAL');
+const client = new MongoClient(MONGODB_URI);
+await client.connect();
 
-db.exec(`
-  CREATE TABLE IF NOT EXISTS leaderboard_entries (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nivel_id TEXT NOT NULL,
-    name TEXT NOT NULL,
-    score INTEGER NOT NULL,
-    level_reached INTEGER NOT NULL,
-    created_at TEXT NOT NULL
-  );
+const db = client.db();
+export const leaderboardCollection = db.collection('leaderboardEntries');
 
-  CREATE INDEX IF NOT EXISTS idx_leaderboard_nivel_score
-    ON leaderboard_entries (nivel_id, score DESC, created_at ASC);
-`);
-
-export default db;
+await leaderboardCollection.createIndex({ nivelId: 1, score: -1, createdAt: 1 });
