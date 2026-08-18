@@ -1,0 +1,16 @@
+{
+  "name": "tomey-ranking-server",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "API para guardar y consultar el ranking de El Desafío de Tomey.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --env-file=.env --watch server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
+}

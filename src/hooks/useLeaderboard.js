@@ -1,39 +1,42 @@
-import { useEffect, useState } from 'react';
-
-const STORAGE_KEY_PREFIX = 'tomey-leaderboard-nivel-';
-const MAX_ENTRIES = 10;
-
-function readEntries(storageKey) {
-  try {
-    const parsed = JSON.parse(localStorage.getItem(storageKey));
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
-}
+import { useCallback, useEffect, useState } from 'react';
+import { API_BASE_URL } from '../config.js';
 
 export function useLeaderboard(nivelId) {
-  const storageKey = `${STORAGE_KEY_PREFIX}${nivelId}`;
-  const [entries, setEntries] = useState(() => readEntries(storageKey));
-  const [isPersistent, setIsPersistent] = useState(true);
+  const [entries, setEntries] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchEntries = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/niveles/${nivelId}/ranking`);
+      if (!response.ok) throw new Error('No se pudo obtener el ranking.');
+      setEntries(await response.json());
+    } catch {
+      setError('No pudimos cargar el ranking. Probá de nuevo más tarde.');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [nivelId]);
 
   useEffect(() => {
-    setEntries(readEntries(storageKey));
-  }, [storageKey]);
+    fetchEntries();
+  }, [fetchEntries]);
 
-  function addEntry({ name, score, levelReached }) {
-    const entry = { name, score, levelReached, date: new Date().toISOString() };
-    const next = [...entries, entry]
-      .sort((a, b) => b.score - a.score || new Date(b.date) - new Date(a.date))
-      .slice(0, MAX_ENTRIES);
-
-    setEntries(next);
+  async function addEntry({ name, score, levelReached }) {
     try {
-      localStorage.setItem(storageKey, JSON.stringify(next));
+      const response = await fetch(`${API_BASE_URL}/api/niveles/${nivelId}/ranking`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, score, levelReached }),
+      });
+      if (!response.ok) throw new Error('No se pudo guardar el puntaje.');
+      setEntries(await response.json());
     } catch {
-      setIsPersistent(false);
+      setError('No pudimos guardar tu puntaje en el ranking. Probá de nuevo más tarde.');
     }
   }
 
-  return { entries, addEntry, isPersistent };
+  return { entries, addEntry, isLoading, error };
 }

@@ -168,6 +168,7 @@ export function useGameState() {
       } else if (isLastLevel) {
         dispatch({ type: 'END_RUN', payload: { result: 'won' } });
       } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         dispatch({
           type: 'ADVANCE_LEVEL',
           payload: { question: pickQuestionForLevel(state.levels, state.levelIndex + 1, state.nivelId) },

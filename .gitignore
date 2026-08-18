@@ -2,6 +2,7 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
 
 # Libro con derechos de autor: no debe publicarse en el repositorio
 *.pdf

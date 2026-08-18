@@ -68,7 +68,13 @@ export default function App() {
       {view === 'nivel-select' && <NivelSelectScreen niveles={NIVELES} onSelectNivel={handleSelectNivel} />}
       {view === 'game' && <GameScreen gameState={gameState} onViewRanking={() => setView('ranking')} />}
       {view === 'ranking' && (
-        <RankingScreen entries={leaderboard.entries} nivelTitle={activeNivel.title} totalLevels={activeNivel.levels.length} />
+        <RankingScreen
+          entries={leaderboard.entries}
+          nivelTitle={activeNivel.title}
+          totalLevels={activeNivel.levels.length}
+          isLoading={leaderboard.isLoading}
+          error={leaderboard.error}
+        />
       )}
 
       {view !== 'welcome' && <BottomNav activeView={view} onNavigate={handleNavigate} />}
